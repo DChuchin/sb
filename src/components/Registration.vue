@@ -1,35 +1,36 @@
 <template lang="pug">
   .screen
-    .screen__content
-      form.screen__form
-        main-title.screen__title
-          | Lorem ipsum
-        custom-input(type="text" name="fullname" required="true" v-model="user.fullName")
-          | Full Name
-        custom-input(type="text" name="title" v-model="user.title")
-          | Title
-        custom-input(type="email" name="email" required="true" v-model="user.email")
-          | Email
-        custom-input(type="phone" name="phone" required="false" v-model="user.phone")
-          | Phone
-        div.form__item.form__item--select
-          select(v-model="user.industry" :class="{ focus: user.industry }")
-            -
-              var options= [
-                "Agriculture",
-                "Foodservice",
-                "Food Manufacturing",
-                "Health and Media"
-              ]
-            each item in options
-              option= item
-          label(for="industry")
-            | Select Industry
-            sup *
-        custom-input(type="text" name="company" required="true" v-model="user.company")
-          | Company
-        custom-button(type="button" :disabled="!isValid" @click="$router.push('/how-to-play')")
-            | Submit
+    transition(name="slide" appear)
+      .screen__content(v-if = 'true')
+        form.screen__form
+          main-title.screen__title
+            | Lorem ipsum
+          custom-input(type="text" name="fullname" required="true" v-model="user.fullName")
+            | Full Name
+          custom-input(type="text" name="title" v-model="user.title")
+            | Title
+          custom-input(type="email" name="email" required="true" v-model="user.email")
+            | Email
+          custom-input(type="phone" name="phone" v-model="user.phone")
+            | Phone
+          div.form__item.form__item--select
+            select(v-model="user.industry" :class="{ focus: user.industry }")
+              -
+                var options= [
+                  "Agriculture",
+                  "Foodservice",
+                  "Food Manufacturing",
+                  "Health and Media"
+                ]
+              each item in options
+                option= item
+            label(for="industry")
+              | Select Industry
+              sup *
+          custom-input(type="text" name="company" required="true" v-model="user.company")
+            | Company
+          custom-button(type="button" :disabled="!isValid" @click="submit")
+              | Submit
 </template>
 
 <script>
@@ -39,32 +40,31 @@
 
   export default {
     name: 'registration',
-    data() {
-      return {
-        msg: 'Welcome to Your Vue.js App',
-        showNotify: false,
-        user: {
-          fullName: null,
-          title: null,
-          email: null,
-          phone: null,
-          industry: null,
-          company: null,
-        },
-      };
-    },
     components: {
       CustomButton,
       MainTitle,
       CustomInput,
     },
+    created() {
+      if (sessionStorage.getItem('user')) {
+        const currentUser = sessionStorage.getItem('user');
+        console.log(JSON.parse(currentUser));
+        this.$store.commit('setUser', JSON.parse(currentUser));
+      }
+    },
     computed: {
+      user() {
+        return this.$store.state.user;
+      },
       isValid() {
         return this.user.fullName && this.user.email && this.user.industry && this.user.company;
       },
     },
     methods: {
       submit() {
+        sessionStorage.setItem('user', JSON.stringify(this.user));
+        this.$store.commit('setUser', this.user);
+        this.$router.push('/how-to-play');
       },
     },
   };

@@ -1,30 +1,35 @@
 <template lang="pug">
   .screen
-    .screen__content
-      main-title.screen__title
-        | Thank you
-        b
-          | For Playing!
-      .results
-        .results__numbers
-          .results__correct
-            | {{props.correct}}/
-          .results__all
-            | {{props.all}}
-        .results__text
-          | correct answers
-      custom-button(@click = "finish")
-        | Finish
+    transition(name = "slide" appear)
+      .screen__content
+        main-title.screen__title
+          | Thank you
+          b
+            | For Playing!
+        .results
+          .results__numbers
+            .results__correct
+              | {{results.correct}}/
+            .results__all
+              | {{results.all}}
+          .results__text
+            | correct answers
+        custom-button(@click = "finish")
+          | Finish
 </template>
 <script>
   import CustomButton from '@/components/CustomButton';
   import MainTitle from '@/components/MainTitle';
 
   export default {
-    props: ['props'],
     components: {
       CustomButton,
       MainTitle,
+    },
+    computed: {
+      results() {
+        return this.$store.getters.getResults;
+      },
     },
     methods: {
       finish() {
@@ -57,6 +62,8 @@
     border-radius: 50%;
     min-width: 250px;
     min-height: 250px;
+    max-width: 250px;
+    max-height: 250px;
     border: 3px solid #ffffff;
     text-align: center;
     margin: 20px auto;

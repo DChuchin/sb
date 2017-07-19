@@ -1,13 +1,7 @@
 <template lang="pug">
-  .answer(:class="modifyClass")
+  .answer
     .answer__text
-      .answer__title
-        | {{title}}
-      .full-answer
-        | {{props.question.fullAnswer}}
-      ol.references__list
-        li.references__item(v-for="item in props.question.references")
-          | {{item}}
+      slot
     custom-button.answer__next(
       type="button"
       @click="$emit('nextQuestion')")
@@ -45,45 +39,50 @@
     width: calc(100 - 20px);
     max-width: 800px;
     padding: 20px 30px;
+    background-color: rgba( orange, .9);
+    backdrop-filter: blur(7px);
 
-    &.wrong {
-      background-color: rgba( orange, .9);
+    .answer__text {
+      border-color: green;
+    }
 
-      .answer__text {
-        border-color: green;
+    .answer__title {
+      &:before {
+        content: '';
+        position: absolute;
+        height: 0;
+        width: 35px;
+        border-bottom: 2px solid #000000;
+        transform-origin: center;
+        transform: translate(-100%, -50%) rotate(-45deg);
+        top: 45%;
+        left: -10px;
       }
 
-      .answer__title {
-        &:before {
-          content: '';
-          position: absolute;
-          height: 0;
-          width: 35px;
-          border-bottom: 2px solid #000000;
-          transform-origin: center;
-          transform: translate(-100%, -50%) rotate(-45deg);
-          top: 45%;
-          left: -10px;
-        }
-
-        &:after {
-          content: '';
-          position: absolute;
-          height: 0;
-          width: 35px;
-          border-bottom: 2px solid #000000;
-          transform-origin: center;
-          transform: translate(-100%, -50%) rotate(45deg);
-          top: 45%;
-          left: -10px;
-        }
+      &:after {
+        content: '';
+        position: absolute;
+        height: 0;
+        width: 35px;
+        border-bottom: 2px solid #000000;
+        transform-origin: center;
+        transform: translate(-100%, -50%) rotate(45deg);
+        top: 45%;
+        left: -10px;
       }
     }
 
     &.correct {
       background-color: rgba(green, .9);
 
+      .answer__text {
+        border-color: orange;
+      }
+
       .answer__title {
+        &:after {
+          content: none;
+        }
         &:before {
           content: '';
           position: absolute;

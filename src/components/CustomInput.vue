@@ -1,6 +1,12 @@
 <template lang="pug">
   div.wrap
-    input(:type="type" :name="name" :required="required" :class="{ focus: focus }" :value="code" @input="updateCode($event.target.value)")
+    input(
+      :type="type"
+      :name="name"
+      :required="required"
+      :class="{ focus: focus }"
+      :value="code"
+      @input="updateCode($event.target.value)")
     label(:for="name")
       slot
         | Label
@@ -9,13 +15,11 @@
 <script>
 export default {
   name: 'CustomInput',
-  props: ['type', 'name', 'required'],
-  data() {
-    return {
-      code: '',
-    };
-  },
+  props: ['type', 'name', 'required', 'value'],
   computed: {
+    code() {
+      return this.value;
+    },
     focus() {
       return !!this.code;
     },
@@ -51,7 +55,7 @@ export default {
     &.focus {
       +label {
         font-size: 12px;
-        trnasform: translateY(-100%);
+        transform: translateY(-100%);
         top: -5px;
       }
     }

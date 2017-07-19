@@ -10,9 +10,9 @@
         label(v-for = "res in props.options")
           input(
             type = "radio"
-            name = "response"
+            name = "answer"
             :value = "res"
-            v-model = "response"
+            v-model = "answer"
             @click = "answered")
           | {{res}}
 </template>
@@ -22,20 +22,17 @@ export default {
   props: ['props'],
   data() {
     return {
-      response: '',
+      answer: '',
     };
   },
   computed: {
     question() {
       return this.props;
     },
-    isCorrect() {
-      return (this.question.answer === this.response);
-    },
   },
   methods: {
     answered() {
-      this.$emit('answered', this.isCorrect);
+      this.$emit('answered', this.answer);
     },
   },
 };
@@ -47,17 +44,29 @@ export default {
     width: calc(100% - 20px);
     max-width: 1200px;
 
+
     &__content {
       display: flex;
       margin: auto;
+      align-items: stretch;
+      
+      @media screen and (max-width: 768px) {
+        flex-direction: column;
+        width: 100%;
+      }
     }
 
     &__body {
       position: relative;
       width: 50%;
       flex: 1 1 auto;
-      background-color: rgba(0, 0, 0, 0.85);
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(3px);
       padding: 10px 15px 40px 30px;
+
+      @media screen and (max-width: 768px) {
+        width: 100%;
+      }
 
       &:after {
         content: '';
@@ -89,8 +98,13 @@ export default {
       flex: 1 1 auto;
       flex-direction: column;
       justify-content: center;
-      background-color: rgba(green, .85);
+      background-color: rgba(green, .8);
+      backdrop-filter: blur(3px);
       padding: 40px 10px;
+
+      @media screen and (max-width: 768px) {
+        width: 100%;
+      }
     }
   }
 

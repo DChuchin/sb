@@ -1,6 +1,6 @@
 <template lang="pug">
   .screen
-    transition(name = "fade" appear)
+    transition(name = "slide" appear)
       .screen__rules
         main-title.screen__title
           | {{ title }}

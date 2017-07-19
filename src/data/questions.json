@@ -1,10 +1,28 @@
 [
   {
-    "text": "1. True or False? Most vegetable oil contains blends of cooking oils, such as soybean and canola oils.",
-    "responses": [
+    "img": "2_Image-for-Screens-2-and-3",
+    "text": "True or False? Most vegetable oil contains blends of cooking oils, such as soybean and canola oils.",
+    "options": [
       "true",
       "false"
     ],
-    "correct": "true"
+    "answer": "false",
+    "fullAnswer": "False. Most vegetable oil is 100% soybean oil. The majority of shoppers (87%) are more likely to purchase soybean oil after learning the health benefits.1",
+    "references": [
+      "2015 post-promotion consumer survey conducted by the United Soybean Board."
+    ]
+  },
+  {
+    "img": "3_Image-for-Screens-4-and-5",
+    "text": "True or False? Most vegetable oil contains blends of cooking oils, such as soybean and canola oils.",
+    "options": [
+      "true",
+      "false"
+    ],
+    "answer": "false",
+    "fullAnswer": "Fadfdfdfdfdlse. Most vegetable oil is 100% soybean oil. The majority of shoppers (87%) are more likely to purchase soybean oil after learning the health benefits.1",
+    "references": [
+      "2015 post-promotion consumer survey conducted by the United Soybean Board."
+    ]
   }
 ]

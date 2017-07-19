@@ -3,7 +3,6 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
-// import quizData from './data/questions.json';
 
 Vue.config.productionTip = false;
 

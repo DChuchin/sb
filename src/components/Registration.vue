@@ -14,16 +14,12 @@
           custom-input(type="phone" name="phone" v-model="user.phone")
             | Phone
           div.form__item.form__item--select
-            select(v-model="user.industry" :class="{ focus: user.industry }")
-              -
-                var options= [
-                  "Agriculture",
-                  "Foodservice",
-                  "Food Manufacturing",
-                  "Health and Media"
-                ]
-              each item in options
-                option= item
+            v-select.custom-select(
+              :class="{ focus: user.industry }"
+              v-model = "user.industry"
+              :options = "options"
+              :searchable = "false"
+            )
             label(for="industry")
               | Select Industry
               sup *
@@ -37,13 +33,20 @@
   import CustomButton from '@/components/CustomButton';
   import MainTitle from '@/components/MainTitle';
   import CustomInput from '@/components/CustomInput';
+  import vSelect from 'vue-select';
 
   export default {
     name: 'registration',
+    data() {
+      return {
+        options: ['Agriculture', 'Foodservice', 'Food Manufacturing', 'Health and Media'],
+      };
+    },
     components: {
       CustomButton,
       MainTitle,
       CustomInput,
+      vSelect,
     },
     created() {
       if (sessionStorage.getItem('user')) {
@@ -68,6 +71,70 @@
     },
   };
 </script>
+<style lang="scss">
+  .custom-select {
+    .open-indicator {
+      display: none !important;
+    }
+    .dropdown-toggle {
+      border: none;
+    }
+    .selected-tag {
+      display: inline-block;
+      background-color: transparent;
+      border: none;
+      color: #ffffff;
+    }
+    .form-control {
+      padding: 10px 0;
+    }
+    .dropdown-menu {
+      max-width: 300px;
+      border-radius: 10px;
+      overflow: visible;
+      top: calc(100% - 5px);
+      border: none;
+      padding: 0;
+
+      li {
+        &:first-child {
+          border-top-left-radius: 9px;
+          border-top-right-radius: 9px;
+          overflow: hidden;
+        }
+        &:last-child {
+          border-bottom-left-radius: 9px;
+          border-bottom-right-radius: 9px;
+          overflow: hidden;
+        }
+        a {
+          padding: 10px;
+          &:hover {
+            background-color: none !important;
+          }
+        }
+      }
+
+      li:not(:last-child) {
+        border-bottom: 1px solid #e2e2e2;
+      }
+
+      &:before {
+        position: absolute;
+        content: '';
+        width: 15px;
+        height: 15px;
+        border-radius: 3px;
+        top: -7px;
+        transform: rotate(45deg);
+        left: 50px;
+        background-color: white;
+        z-index: -1;
+      }
+    }
+  }
+</style>
+
 <style lang="scss" scoped>
   .screen {
     background: url('../assets/1_Image-for-Widget-and-Screen-1.jpg') no-repeat;
@@ -86,15 +153,16 @@
 
       &--select {
         margin-top: 40px;
+        z-index: 2;
       }
     }
   }
-  select {
+  .v-select {
     position: relative;
     border: none;
     width: 100%;
     background-color: transparent;
-    border-bottom: 1px solid #ffffff;
+    border-bottom: 1px solid rgba(#ffffff, .3);
     border-radius: 0;
     outline: none;
     color: #ffffff;
@@ -112,6 +180,7 @@
       }
     }
   }
+  
   label {
     position: absolute;
     transition: .3s;
@@ -120,4 +189,14 @@
     left: 0;
     font-weight: 300;
   }
+  .custom-select {
+    z-index: 1;
+  }
+  .selected-tag {
+
+  }
+  .dropdown-toggle {
+    border: none;
+  }
 </style>
+

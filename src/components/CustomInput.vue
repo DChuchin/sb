@@ -43,7 +43,7 @@ export default {
     border: none;
     width: 100%;
     background-color: transparent;
-    border-bottom: 1px solid #ffffff;
+    border-bottom: 1px solid rgba(#ffffff, .3);
     outline: none;
     border-radius: 0;
     color: #ffffff;

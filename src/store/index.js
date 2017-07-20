@@ -39,7 +39,6 @@ export default new Vuex.Store({
   },
   actions: {
     finish() {
-      console.log('finish');
     },
   },
   getters: {

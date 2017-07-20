@@ -14,4 +14,9 @@ new Vue({
   store,
   template: '<App/>',
   components: { App },
+  created() {
+    if (!sessionStorage.user) {
+      this.$router.push('/');
+    }
+  },
 });

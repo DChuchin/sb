@@ -48,7 +48,6 @@
     created() {
       if (sessionStorage.getItem('user')) {
         const currentUser = sessionStorage.getItem('user');
-        console.log(JSON.parse(currentUser));
         this.$store.commit('setUser', JSON.parse(currentUser));
       }
     },

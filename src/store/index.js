@@ -37,6 +37,11 @@ export default new Vuex.Store({
       myState.correctAnswers = 0;
     },
   },
+  actions: {
+    finish() {
+      console.log('finish');
+    },
+  },
   getters: {
     getResults(state) {
       return {

@@ -33,8 +33,7 @@
     },
     methods: {
       finish() {
-        this.$emit('finish');
-        this.$router.push('/finish');
+        this.$store.dispatch('finish');
       },
     },
   };

@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import Axios from 'axios';
 import Questions from '../data/questions.json';
 
 Vue.use(Vuex);

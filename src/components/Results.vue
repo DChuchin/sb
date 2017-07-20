@@ -14,6 +14,9 @@
               | {{results.all}}
           .results__text
             | correct answers
+        transition(name = "slide-up" mode="out-in")
+          .bottom-text(v-show = "isFinished")
+            | Look out for future emails with opportunities to play new soy trivia as well as the latest soybean oil labeling campaign results.
         custom-button(@click = "finish")
           | Finish
 </template>
@@ -22,6 +25,11 @@
   import MainTitle from '@/components/MainTitle';
 
   export default {
+    data() {
+      return {
+        isFinished: false,
+      };
+    },
     components: {
       CustomButton,
       MainTitle,
@@ -33,12 +41,29 @@
     },
     methods: {
       finish() {
+        this.isFinished = true;
         this.$store.dispatch('finish');
       },
     },
   };
 </script>
 <style lang="scss" scoped>
+  .bottom-text {
+    margin-left: -30px;
+    margin-right: -30px;
+    padding: 30px;
+    font-size: 20px;
+    background-color: rgba(black, .5);
+    font-weight: 100;
+    line-height: 1.75;
+  }
+  .slide-up-enter-active, .slide-up-leave-active {
+    transition: .3s;
+  }
+  .slide-up-enter{
+    opacity: 0;
+    transform: translateY(100%);
+  }
   .screen {
     background: url('../assets/7_Image-for-Finsh-Screen.jpg') no-repeat center;
     background-size: cover;
@@ -66,6 +91,7 @@
     border: 3px solid #ffffff;
     text-align: center;
     margin: 20px auto;
+    transition: .3s;
 
     &__numbers {
       display: flex;

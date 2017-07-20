@@ -1,5 +1,5 @@
 <template lang="pug">
-  .screen
+  .screen(:style = "{ 'background-image': bg }")
     transition(name = "slide" appear)
       .screen__rules
         main-title.screen__title
@@ -30,6 +30,12 @@ export default {
         'atque delectus perferendis',
       ],
     };
+  },
+  computed: {
+    bg() {
+      const url = require('../assets/1_Image-for-Widget-and-Screen-1.jpg');
+      return `url(${url})`;
+    },
   },
   methods: {
     start() {

@@ -31,6 +31,7 @@
   height: 100%;
   width: 100%;
   background-size: cover;
+  background-repeat: no-repeat;
 
   &__content {
     display: flex;

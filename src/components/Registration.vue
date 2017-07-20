@@ -1,5 +1,7 @@
 <template lang="pug">
-  .screen
+  .screen(
+    :style = "{ 'background-image': bg }")
+    //- img(:src = "bg")
     transition(name="slide" appear)
       .screen__content(v-if = 'true')
         form.screen__form
@@ -60,6 +62,10 @@
       }
     },
     computed: {
+      bg() {
+        const url = require('../assets/1_Image-for-Widget-and-Screen-1.jpg');
+        return `url(${url})`;
+      },
       user() {
         return this.$store.state.user;
       },
@@ -142,9 +148,6 @@
 
 <style lang="scss" scoped>
   .screen {
-    background: url('../assets/1_Image-for-Widget-and-Screen-1.jpg') no-repeat;
-    background-size: cover;
-
     &__form {
       display: flex;
       flex-direction: column;

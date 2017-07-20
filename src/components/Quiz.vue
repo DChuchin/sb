@@ -1,5 +1,5 @@
 <template lang="pug">
-  .screen
+  .screen(:style = "{ 'background-image': bg }")
     transition(name="fade" appear mode="out-in")
       question(
         v-if = "!answer"
@@ -13,9 +13,12 @@
           | {{ isCorrect ? "Correct!" : "Wrong!" }}
         .full-answer
           | {{question.fullAnswer}}
-        ol.references__list
-          li.references__item(v-for="item in question.references")
-            | {{item}}
+        .references
+          .references__title
+            | References: 
+          ol.references__list
+            li.references__item(v-for="item in question.references")
+              | {{item}}
 </template>
 <script>
 import Question from '@/components/Question';
@@ -26,14 +29,16 @@ export default {
   data() {
     return {
       answer: '',
+      animate: true,
     };
   },
   mounted() {
     this.$store.commit('resetState');
   },
   computed: {
-    getImgUrl() {
-      return `/static/img/${this.question.img}.jpg`;
+    bg() {
+      const url = require('../assets/' + this.question.img + '.jpg');
+      return `url(${url})`;
     },
     question() {
       return this.$store.getters.getQuestion;
@@ -51,6 +56,12 @@ export default {
       return (this.answer === this.question.answer);
     },
   },
+  // beforeUpdate() {
+  //   this.animate = false;
+  // },
+  // updated() {
+  //   this.animate = true;
+  // },
   methods: {
     showAnswer(answer) {
       if (answer === this.question.answer) {
@@ -88,5 +99,37 @@ export default {
   .fade-leave-to {
     opacity: 0;
     transform: translateX(-150px);
+  }
+  .opacity-enter-active, .opacity-leave-active {
+    transition: .5s;
+  }
+  .opacity-enter, .opacity-leave-to {
+    opacity: 0;
+  }
+  .full-answer {
+    font-size: 24px;
+    margin-bottom: 30px;
+    font-weight: 100;
+  }
+  .references {
+    display: flex;
+    color: black;
+
+    &__title {
+      display: inline-block;
+      text-transform: uppercase;
+      margin-right: 10px;
+    }
+
+    &__list {
+      margin: 0;
+      padding: 0;
+      list-style-position: inside;
+      font-size: 14px;
+    }
+
+    &__item {
+      margin-bottom: 10px;
+    }
   }
 </style>

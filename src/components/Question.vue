@@ -4,17 +4,17 @@
       .question__body
         .question__text
           .question__number
-            | 1
+            | {{ number }}
           | {{ props.text }}
       .question__answers
-        label(v-for = "res in props.options")
+        label(v-for = "(item, index) in props.options")
           input(
             type = "radio"
             name = "answer"
-            :value = "res"
+            :value = "item"
             v-model = "answer"
             @click = "answered")
-          | {{res}}
+          | {{letter[index]}}. {{item}}
 </template>
 
 <script>
@@ -26,6 +26,12 @@ export default {
     };
   },
   computed: {
+    number() {
+      return this.$store.state.step + 1;
+    },
+    letter() {
+      return ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+    },
     question() {
       return this.props;
     },

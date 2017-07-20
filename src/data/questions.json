@@ -14,41 +14,59 @@
   },
   {
     "img": "3_Image-for-Screens-4-and-5",
-    "text": "True or False? Most vegetable oil contains blends of cooking oils, such as soybean and canola oils.",
+    "text": "True or false? Soybean oil is the main source of omega-3s and vitamin E in the U.S. diet.",
     "options": [
       "true",
       "false"
     ],
-    "answer": "false",
-    "fullAnswer": "Fadfdfdfdfdlse. Most vegetable oil is 100% soybean oil. The majority of shoppers (87%) are more likely to purchase soybean oil after learning the health benefits.1",
+    "answer": "true",
+    "fullAnswer": "True.1 It also contributes 0 grams trans fat to products, is high in monounsaturated fats, and has just 2 grams of saturated fat per serving.2",
     "references": [
-      "2015 post-promotion consumer survey conducted by the United Soybean Board."
+      "PM Kris-Etherton, Denise Shaffer Taylor, et al. \"Polyunsaturated fatty acids in the food chain in the United States.\" AM J Clin Nutr. 2000 Jan; 71(1) 1: 179S-188S.",
+      "USDA National Nutrient Database for Standard Reference."
     ]
   },
   {
-    "img": "2_Image-for-Screens-2-and-3",
-    "text": "True or False? Most vegetable oil contains blends of cooking oils, such as soybean and canola oils.",
+    "img": "4_Image-for-Screens-6-and-7",
+    "text": "True or False? Most soybean oil is made with U.S.-grown soybeans.",
     "options": [
       "true",
       "false"
     ],
-    "answer": "false",
-    "fullAnswer": "False. Most vegetable oil is 100% soybean oil. The majority of shoppers (87%) are more likely to purchase soybean oil after learning the health benefits.1",
+    "answer": "true",
+    "fullAnswer": "True. Purchase intent rises when shoppers learn that most vegetable oil is U.S.-grown 100% soybean oil; 63% say they would be more likely to purchase a product if it displayed a label stating it was made with 100% U.S.-grown ingredients.",
     "references": [
-      "2015 post-promotion consumer survey conducted by the United Soybean Board."
+      "2017 United Soybean Board Food Industry Insights Survey."
     ]
   },
   {
-    "img": "2_Image-for-Screens-2-and-3",
-    "text": "True or False? Most vegetable oil contains blends of cooking oils, such as soybean and canola oils.",
+    "img": "5_Image-for-Screens-8-and-9",
+    "text": "____% of consumers said it is important to support domestic agriculture by buying foods produced with crops grown by U.S. farmers.",
     "options": [
-      "true",
-      "false"
+      "27",
+      "42",
+      "76",
+      "83"
     ],
-    "answer": "false",
-    "fullAnswer": "False. Most vegetable oil is 100% soybean oil. The majority of shoppers (87%) are more likely to purchase soybean oil after learning the health benefits.1",
+    "answer": "76",
+    "fullAnswer": "C) Sourcing U.S.-grown ingredients, like soybeans, is becoming increasingly important for food companies; 76% of consumers said it is important to support domestic agriculture by buying foods produced with crops grown by U.S. farmers.1",
     "references": [
-      "2015 post-promotion consumer survey conducted by the United Soybean Board."
+      "2017 United Soybean Board Food Industry Insights Survey."
+    ]
+  },
+  {
+    "img": "6_Image-for-Screens-6-and-7",
+    "text": "A large Midwest grocery retailer with 230+ locations reported a ____% unit sales increase over two months* as a result of promoting its store-brand vegetable oil as “U.S.-grown 100% soybean oil.”",
+    "options": [
+      "5",
+      "27",
+      "12",
+      "33"
+    ],
+    "answer": "27",
+    "fullAnswer": "A large Midwest grocery retailer with 230+ locations reported a 27% unit sales increase as a result of promoting its store-brand vegetable oil as U.S.-grown 100% soybean oil.1",
+    "references": [
+      "Sales data reported by large Midwest grocer with 230+ locations."
     ]
   }
 ]

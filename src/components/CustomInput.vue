@@ -1,18 +1,28 @@
 <template lang="pug">
   div.wrap
     input(
-      :type="type"
+      v-validate="validate"
+      type="text"
       :name="name"
       :required="required"
-      :class="{ focus: focus }"
+      :class="{ focus: focus, 'is-danger focus': errors.has(name), input: true }"
       :value="code"
       @input="updateCode($event.target.value)")
-    label(:for="name")
+    label.label(:for="name")
       slot
         | Label
       sup(v-if="required") *
+    span(
+      v-show="errors.has(name)"
+      class="help-message")
+        | {{ errors.first(name) }}
 </template>
 <script>
+import Vue from 'vue';
+import VeeValidate from 'vee-validate';
+
+Vue.use(VeeValidate);
+
 export default {
   name: 'CustomInput',
   props: ['type', 'name', 'required', 'value'],
@@ -22,6 +32,19 @@ export default {
     },
     focus() {
       return !!this.code;
+    },
+    validate() {
+      const arr = [];
+      if (this.required) {
+        arr.push('required');
+      }
+      if (this.type === 'email') {
+        arr.push('email');
+      }
+      if (this.type === 'phone') {
+        arr.push('numeric');
+      }
+      return arr.join('|');
     },
   },
   methods: {
@@ -38,7 +61,7 @@ export default {
     position: relative;
   }
 
-  input {
+  .input {
     position: relative;
     border: none;
     width: 100%;
@@ -51,9 +74,14 @@ export default {
     padding: 10px 0;
     z-index: 1;
 
+    &.is-danger {
+      color: orange;
+      border-color: orange;
+    }
+
     &:focus,
     &.focus {
-      +label {
+      + .label {
         font-size: 12px;
         transform: translateY(-100%);
         top: -5px;
@@ -61,7 +89,16 @@ export default {
     }
   }
 
-  label {
+  .help-message {
+    position: absolute;
+    font-size: 12px;
+    top: 100%;
+    left: 0;
+    color: orange;
+    margin-top: 5px;
+  }
+
+  .label {
     position: absolute;
     transition: .3s;
     top: 50%;

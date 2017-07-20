@@ -15,7 +15,7 @@
             | Phone
           div.form__item.form__item--select
             v-select.custom-select(
-              :class="{ focus: user.industry }"
+              :class="{ focus: user.industry, 'is-danger': !validSelect }"
               v-model = "user.industry"
               :options = "options"
               :searchable = "false"
@@ -34,12 +34,17 @@
   import MainTitle from '@/components/MainTitle';
   import CustomInput from '@/components/CustomInput';
   import vSelect from 'vue-select';
+  import VeeValidate from 'vee-validate';
+  import Vue from 'vue';
+
+  Vue.use(VeeValidate);
 
   export default {
     name: 'registration',
     data() {
       return {
         options: ['Agriculture', 'Foodservice', 'Food Manufacturing', 'Health and Media'],
+        validSelect: true,
       };
     },
     components: {

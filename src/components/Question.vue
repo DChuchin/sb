@@ -7,8 +7,8 @@
             | {{ number }}
           | {{ props.text }}
       .question__answers
-        label(v-for = "(item, index) in props.options")
-          input(
+        label.question__label(v-for = "(item, index) in props.options")
+          input.question__input(
             type = "radio"
             name = "answer"
             :value = "item"
@@ -112,25 +112,26 @@ export default {
         width: 100%;
       }
     }
-  }
+    &__input {
+      visibility: hidden;
+    }
 
-  input {
-    display: none;
-  }
+    &__label {
+      padding: 15px;
+      background-color: lighten(green, 10%);
+      margin-bottom: 2px;
+      text-transform: uppercase;
+      transition: .3s;
+      font-weight: 400;
+      font-size: 24px;
 
-  label {
-    padding: 15px;
-    background-color: lighten(green, 10%);
-    margin-bottom: 2px;
-    text-transform: uppercase;
-    transition: .3s;
-    font-weight: 400;
-    font-size: 24px;
-
-    &:hover,
-    &:focus {
-      background-color: lighten(green, 5%);
+      &:hover,
+      &:focus,
+      &:focus-within {
+        background-color: lighten(green, 5%);
+      }
     }
   }
+
 </style>
 

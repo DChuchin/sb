@@ -5,7 +5,15 @@ import Questions from '../data/questions.json';
 
 Vue.use(Vuex);
 
+const getUser = store => {
+  if (sessionStorage.getItem('user')) {
+    const currentUser = sessionStorage.getItem('user');
+    store.commit('setUser', JSON.parse(currentUser));
+  }
+}
+
 export default new Vuex.Store({
+  plugins: [getUser],
   state: {
     step: 0,
     user: {
@@ -16,6 +24,7 @@ export default new Vuex.Store({
       industry: '',
       company: '',
     },
+    endpoint: 'http://www.soyconnection.com/trivia-challenge',
     questions: Questions,
     correctAnswers: 0,
   },
@@ -39,7 +48,19 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    finish() {
+    finish(context) {
+      const results = {
+        user: context.state.user,
+        correct: context.state.correctAnswers,
+      };
+      const endpoint = context.state.endpoint;
+      Axios.post(endpoint, results)
+        .then(response => {
+          console.log('good')
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
   },
   getters: {

@@ -36,7 +36,7 @@
   .answer {
     position: relative;
     margin: auto;
-    width: calc(100 - 20px);
+    width: calc(100% - 20px);
     max-width: 800px;
     padding: 20px 30px;
     background-color: rgba( orange, .9);

@@ -55,12 +55,6 @@
       CustomInput,
       vSelect,
     },
-    created() {
-      if (sessionStorage.getItem('user')) {
-        const currentUser = sessionStorage.getItem('user');
-        this.$store.commit('setUser', JSON.parse(currentUser));
-      }
-    },
     computed: {
       bg() {
         const url = require('../assets/1_Image-for-Widget-and-Screen-1.jpg');
@@ -83,7 +77,7 @@
   };
 </script>
 <style lang="scss">
-  .custom-select {
+  .v-select.custom-select {
     .open-indicator {
       display: none !important;
     }

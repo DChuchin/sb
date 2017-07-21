@@ -14,9 +14,8 @@
               | {{results.all}}
           .results__text
             | correct answers
-        transition(name = "slide-up" mode="out-in")
-          .bottom-text(v-show = "isFinished")
-            | Look out for future emails with opportunities to play new soy trivia as well as the latest soybean oil labeling campaign results.
+        .bottom-text(:class="{'is-animated': animate}")
+          | Look out for future emails with opportunities to play new soy trivia as well as the latest soybean oil labeling campaign results.
         custom-button(@click = "finish")
           | Finish
 </template>
@@ -28,6 +27,7 @@
     data() {
       return {
         isFinished: false,
+        animate: false,
       };
     },
     components: {
@@ -41,7 +41,7 @@
     },
     methods: {
       finish() {
-        this.isFinished = true;
+        this.animate = true;
         this.$store.dispatch('finish');
       },
     },
@@ -56,6 +56,17 @@
     background-color: rgba(black, .5);
     font-weight: 100;
     line-height: 1.75;
+    transition: .5s;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+
+    &.is-animated {
+      max-height: 300px;
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
   }
   .slide-up-enter-active, .slide-up-leave-active {
     transition: .3s;

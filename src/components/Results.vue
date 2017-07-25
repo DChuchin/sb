@@ -14,8 +14,10 @@
               | {{results.all}}
           .results__text
             | correct answers
-        .bottom-text(:class="{'is-animated': animate}")
+        .bottom-text(v-if = "serverResponse === 'success' ")
           | Look out for future emails with opportunities to play new soy trivia as well as the latest soybean oil labeling campaign results.
+        .bottom-text(v-if = "serverResponse === 'error' ")
+          | Something wrong
         custom-button(@click = "finish")
           | Finish
 </template>
@@ -38,6 +40,9 @@
       results() {
         return this.$store.getters.getResults;
       },
+      serverResponse() {
+        return this.$store.state.finishGame;
+      }
     },
     methods: {
       finish() {
@@ -57,16 +62,16 @@
     font-weight: 100;
     line-height: 1.75;
     transition: .5s;
-    max-height: 0;
+    // max-height: 0;
     padding-top: 0;
     padding-bottom: 0;
-    overflow: hidden;
+    // overflow: hidden;
 
-    &.is-animated {
-      max-height: 300px;
-      padding-top: 30px;
-      padding-bottom: 30px;
-    }
+    // &.is-animated {
+    //   max-height: 300px;
+    //   padding-top: 30px;
+    //   padding-bottom: 30px;
+    // }
   }
   .slide-up-enter-active, .slide-up-leave-active {
     transition: .3s;

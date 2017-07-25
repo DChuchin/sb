@@ -38,6 +38,7 @@ export default {
   },
   methods: {
     answered() {
+      this.$store.commit('pushAnswer', this.answer);
       this.$emit('answered', this.answer);
     },
   },

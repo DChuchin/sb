@@ -24,9 +24,11 @@ export default new Vuex.Store({
       industry: '',
       company: '',
     },
-    endpoint: 'http://www.soyconnection.com/trivia-challenge',
+    finishGame: null,
+    endpoint: '/trivia-challenge',
     questions: Questions,
     correctAnswers: 0,
+    answers: [],
   },
   mutations: {
     nextStep(state) {
@@ -46,20 +48,25 @@ export default new Vuex.Store({
       myState.step = 0;
       myState.correctAnswers = 0;
     },
+    pushAnswer(state, answer) {
+      state.answers.push(answer);
+    },
   },
   actions: {
     finish(context) {
       const results = {
         user: context.state.user,
         correct: context.state.correctAnswers,
+        answers: context.state.answers,
       };
       const endpoint = context.state.endpoint;
       Axios.post(endpoint, results)
         .then(response => {
-          console.log('good')
+          context.state.finishGame = 'success';
         })
         .catch(error => {
           console.log(error);
+          context.state.finishGame = 'error';
         });
     },
   },

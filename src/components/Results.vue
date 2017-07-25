@@ -1,5 +1,7 @@
 <template lang="pug">
-  .screen
+  .screen(
+    :style = "{ 'background-image': bg }"
+  )
     transition(name = "slide" appear)
       .screen__content
         main-title.screen__title
@@ -14,34 +16,39 @@
               | {{results.all}}
           .results__text
             | correct answers
-        .bottom-text(v-if = "serverResponse === 'success' ")
-          | Look out for future emails with opportunities to play new soy trivia as well as the latest soybean oil labeling campaign results.
-        .bottom-text(v-if = "serverResponse === 'error' ")
-          | Something wrong
-        custom-button(@click = "finish")
-          | Finish
+        transition(name = "fade" mode = "out-in")
+          .bottom-text(v-if = "serverResponse === 'success' ")
+            | Look out for future emails with opportunities to play new soy trivia as well as the latest soybean oil labeling campaign results.
+          .bottom-text(v-if = "serverResponse === 'error' ")
+            | Something wrong
+        transition(name = "fade")
+          custom-button(@click = "finish" v-if="serverResponse !== 'success'")
+            | Finish
 </template>
 <script>
   import CustomButton from '@/components/CustomButton';
   import MainTitle from '@/components/MainTitle';
 
   export default {
-    data() {
-      return {
-        isFinished: false,
-        animate: false,
-      };
-    },
     components: {
       CustomButton,
       MainTitle,
     },
     computed: {
+      bg() {
+        const url = require('../assets/7_Image-for-Finsh-Screen.jpg');
+        return `url(${url})`;
+      },
       results() {
         return this.$store.getters.getResults;
       },
       serverResponse() {
         return this.$store.state.finishGame;
+      }
+    },
+    beforeMount() {
+      if (!this.$store.state.answers.length) {
+        this.$router.push('/quiz');
       }
     },
     methods: {
@@ -81,7 +88,6 @@
     transform: translateY(100%);
   }
   .screen {
-    background: url('../assets/7_Image-for-Finsh-Screen.jpg') no-repeat center;
     background-size: cover;
 
     &__content {

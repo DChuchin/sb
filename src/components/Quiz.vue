@@ -15,7 +15,7 @@
           | {{question.fullAnswer}}
         .references
           .references__title
-            | References: 
+            | References:
           ol.references__list
             li.references__item(v-for="item in question.references")
               | {{item}}
@@ -56,12 +56,6 @@ export default {
       return (this.answer === this.question.answer);
     },
   },
-  // beforeUpdate() {
-  //   this.animate = false;
-  // },
-  // updated() {
-  //   this.animate = true;
-  // },
   methods: {
     showAnswer(answer) {
       if (answer === this.question.answer) {
@@ -92,7 +86,7 @@ export default {
   .fade-enter-active, .fade-leave-active {
     transition: .3s
   }
-  .fade-enter, .fade-leave-to /* .fade-leave-active для <2.1.8 */ {
+  .fade-enter, .fade-leave-to {
     opacity: 0;
     transform: translateX(150px);
   }
@@ -114,6 +108,7 @@ export default {
   .references {
     display: flex;
     color: black;
+    font-size: 12px;
 
     &__title {
       display: inline-block;
@@ -125,7 +120,7 @@ export default {
       margin: 0;
       padding: 0;
       list-style-position: inside;
-      font-size: 14px;
+      font-size: 12px;
     }
 
     &__item {

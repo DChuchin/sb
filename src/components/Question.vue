@@ -56,7 +56,7 @@ export default {
       display: flex;
       margin: auto;
       align-items: stretch;
-      
+
       @media screen and (max-width: 768px) {
         flex-direction: column;
         width: 100%;
@@ -127,7 +127,10 @@ export default {
       font-size: 24px;
 
       &:hover,
-      &:focus,
+      &:focus {
+        background-color: lighten(green, 5%);
+      }
+
       &:focus-within {
         background-color: lighten(green, 5%);
       }
@@ -135,4 +138,3 @@ export default {
   }
 
 </style>
-

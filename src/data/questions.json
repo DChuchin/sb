@@ -7,7 +7,7 @@
       "false"
     ],
     "answer": "false",
-    "fullAnswer": "False. Most vegetable oil is 100% soybean oil. The majority of shoppers (87%) are more likely to purchase soybean oil after learning the health benefits.1",
+    "fullAnswer": "False. Most vegetable oil is 100% soybean oil. The majority of shoppers (87%) are more likely to purchase soybean oil after learning the health benefits.<sup>1</sup>",
     "references": [
       "2015 post-promotion consumer survey conducted by the United Soybean Board."
     ]
@@ -20,7 +20,7 @@
       "false"
     ],
     "answer": "true",
-    "fullAnswer": "True.1 It also contributes 0 grams trans fat to products, is high in monounsaturated fats, and has just 2 grams of saturated fat per serving.2",
+    "fullAnswer": "True.<sup>1</sup> It also contributes 0 grams trans fat to products, is high in monounsaturated fats, and has just 2 grams of saturated fat per serving.<sup>2</sup>",
     "references": [
       "PM Kris-Etherton, Denise Shaffer Taylor, et al. \"Polyunsaturated fatty acids in the food chain in the United States.\" AM J Clin Nutr. 2000 Jan; 71(1) 1: 179S-188S.",
       "USDA National Nutrient Database for Standard Reference."
@@ -34,7 +34,7 @@
       "false"
     ],
     "answer": "true",
-    "fullAnswer": "True. Purchase intent rises when shoppers learn that most vegetable oil is U.S.-grown 100% soybean oil; 63% say they would be more likely to purchase a product if it displayed a label stating it was made with 100% U.S.-grown ingredients.",
+    "fullAnswer": "True. Purchase intent rises when shoppers learn that most vegetable oil is U.S.-grown 100% soybean oil; 63% say they would be more likely to purchase a product if it displayed a label stating it was made with 100% U.S.-grown ingredients.<sup>1</sup>",
     "references": [
       "2017 United Soybean Board Food Industry Insights Survey."
     ]
@@ -49,7 +49,7 @@
       "83"
     ],
     "answer": "76",
-    "fullAnswer": "C) Sourcing U.S.-grown ingredients, like soybeans, is becoming increasingly important for food companies; 76% of consumers said it is important to support domestic agriculture by buying foods produced with crops grown by U.S. farmers.1",
+    "fullAnswer": "C) Sourcing U.S.-grown ingredients, like soybeans, is becoming increasingly important for food companies; 76% of consumers said it is important to support domestic agriculture by buying foods produced with crops grown by U.S. farmers.<sup>1</sup>",
     "references": [
       "2017 United Soybean Board Food Industry Insights Survey."
     ]
@@ -64,7 +64,7 @@
       "33"
     ],
     "answer": "27",
-    "fullAnswer": "A large Midwest grocery retailer with 230+ locations reported a 27% unit sales increase as a result of promoting its store-brand vegetable oil as U.S.-grown 100% soybean oil.1",
+    "fullAnswer": "A large Midwest grocery retailer with 230+ locations reported a 27% unit sales increase as a result of promoting its store-brand vegetable oil as U.S.-grown 100% soybean oil.<sup>1</sup>",
     "references": [
       "Sales data reported by large Midwest grocer with 230+ locations."
     ]

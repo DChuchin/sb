@@ -17,9 +17,10 @@ export default new Vuex.Store({
   state: {
     step: 0,
     user: {
-      fullName: '',
-      email: '',
+      firstName: '',
+      lastName: '',
       title: '',
+      email: '',
       phone: '',
       industry: '',
       company: '',

@@ -11,8 +11,7 @@
         @nextQuestion = "showNextQuestion")
         .answer__title
           | {{ isCorrect ? "Correct!" : "Wrong!" }}
-        .full-answer
-          | {{question.fullAnswer}}
+        .full-answer(v-html="question.fullAnswer")
         .references
           .references__title
             | References:

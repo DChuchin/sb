@@ -1,14 +1,15 @@
 <template lang="pug">
   .screen(
     :style = "{ 'background-image': bg }")
-    //- img(:src = "bg")
     transition(name="slide" appear)
       .screen__content(v-if = 'true')
         form.screen__form
           main-title.screen__title
-            | Lorem ipsum
-          custom-input(type="text" name="fullname" required="true" v-model="user.fullName")
-            | Full Name
+            | Soybean Oil Trivia
+          custom-input(type="text" name="firstName" required="true" v-model="user.firstName")
+            | First Name
+          custom-input(type="text" name="lastName" required="true" v-model="user.lastName")
+            | Last Name
           custom-input(type="text" name="title" v-model="user.title")
             | Title
           custom-input(type="email" name="email" required="true" v-model="user.email")
@@ -64,7 +65,7 @@
         return this.$store.state.user;
       },
       isValid() {
-        return this.user.fullName && this.user.email && this.user.industry && this.user.company;
+        return this.user.firstName && this.user.lastName && this.user.email && this.user.industry && this.user.company;
       },
     },
     methods: {
@@ -182,7 +183,7 @@
       }
     }
   }
-  
+
   label {
     position: absolute;
     transition: .3s;
@@ -201,4 +202,3 @@
     border: none;
   }
 </style>
-

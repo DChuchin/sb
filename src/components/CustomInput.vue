@@ -6,7 +6,7 @@
       :name="name"
       :required="required"
       :class="{ focus: focus, 'is-danger focus': errors.has(name), input: true }"
-      :value="code"
+      :value="value"
       @input="updateCode($event.target.value)")
     label.label(:for="name")
       slot
@@ -49,15 +49,16 @@ export default {
   },
   methods: {
     updateCode(code) {
-      this.code = code;
       this.$emit('input', code);
     },
   },
 };
 </script>
 <style lang="scss" scoped>
-  
+
   .wrap {
+    margin-top: 20px;
+    margin-top: 15px;
     position: relative;
   }
 
@@ -71,7 +72,7 @@ export default {
     border-radius: 0;
     color: #ffffff;
     font-weight: 300;
-    padding: 10px 0;
+    padding: 5px 0;
     z-index: 1;
 
     &.is-danger {
@@ -84,7 +85,7 @@ export default {
       + .label {
         font-size: 12px;
         transform: translateY(-100%);
-        top: -5px;
+        top: 0;
       }
     }
   }

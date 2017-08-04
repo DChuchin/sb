@@ -3,19 +3,71 @@
     :style = "{ 'background-image': bg }")
     transition(name="slide" appear)
       .screen__content(v-if = 'true')
-        form.screen__form
+        form.screen__form.form
           main-title.screen__title
             | Soybean Oil Trivia
-          custom-input(type="text" name="firstName" required="true" v-model="user.firstName")
-            | First Name
-          custom-input(type="text" name="lastName" required="true" v-model="user.lastName")
-            | Last Name
-          custom-input(type="text" name="title" v-model="user.title")
-            | Title
-          custom-input(type="email" name="email" required="true" v-model="user.email")
-            | Email
-          custom-input(type="phone" name="phone" v-model="user.phone")
-            | Phone
+          .form__item
+            input.form__input(
+                :class="{ focus: !!user.firstName, 'is-danger focus': errors.has('firstName') }"
+                v-validate="'required'"
+                type="text"
+                name="firstName"
+                v-model="user.firstName"
+              )
+            label.form__label
+              | First Name
+              sup *
+            span.form__error.help-message(v-show="errors.has('firstName')")
+              | errors.first('firstName')
+          .form__item
+            input.form__input(
+                :class="{ focus: !!user.lastName, 'is-danger focus': errors.has('lastName') }"
+                v-validate="'required'"
+                type="text"
+                name="lastName"
+                v-model="user.lastName"
+              )
+            label.form__label
+              | Last Name
+              sup *
+            span.form__error.help-message(v-show="errors.has('lastName')")
+          //custom-input(type="text" name="lastName" required="true" v-model="user.lastName")
+          //  | Last Name
+          .form__item
+            input.form__input(
+                :class="{ focus: !!user.title }"
+                type="text"
+                name="title"
+                v-model="user.title"
+              )
+            label.form__label
+              | Title
+          .form__item
+            input.form__input(
+                :class="{ focus: !!user.email, 'is-danger focus': errors.has('email') }"
+                v-validate="'required|email'"
+                type="text"
+                name="email"
+                v-model="user.email"
+              )
+            label.form__label
+              | Email
+              sup *
+            span.form__error.help-message(v-show="errors.has('email')")
+              | {{ errors.first('email') }}
+          .form__item
+            masked-input.form__input(
+                :class="{ focus: !!user.phone }"
+                type="tel"
+                name="phone"
+                v-model="user.phone"
+                @input="checkPhone"
+                mask="\\+ 1 (111) 1111-11"
+              )
+            label.form__label
+              | Phone
+          //custom-input(type="phone" name="phone" v-model="user.phone")
+          //  | Phone
           div.form__item.form__item--select
             v-select.custom-select(
               :class="{ focus: user.industry, 'is-danger': !validSelect }"
@@ -38,6 +90,7 @@
   import CustomInput from '@/components/CustomInput';
   import vSelect from 'vue-select';
   import VeeValidate from 'vee-validate';
+  import MaskedInput from 'vue-masked-input';
   import Vue from 'vue';
 
   Vue.use(VeeValidate);
@@ -55,6 +108,7 @@
       MainTitle,
       CustomInput,
       vSelect,
+      MaskedInput,
     },
     computed: {
       bg() {
@@ -74,10 +128,14 @@
         this.$store.commit('setUser', this.user);
         this.$router.push('/how-to-play');
       },
+      checkPhone() {
+        this.user.phone = arguments[1];
+      },
     },
   };
 </script>
 <style lang="scss">
+
   .v-select.custom-select {
     .open-indicator {
       display: none !important;
@@ -153,11 +211,59 @@
   .form {
     &__item {
       position: relative;
+      margin-top: 20px;
+      margin-top: 15px;
 
       &--select {
         margin-top: 40px;
         z-index: 2;
       }
+    }
+
+    &__input {
+      position: relative;
+      border: none;
+      width: 100%;
+      background-color: transparent;
+      border-bottom: 1px solid rgba(#ffffff, .3);
+      outline: none;
+      border-radius: 0;
+      color: #ffffff;
+      font-weight: 300;
+      padding: 5px 0;
+      z-index: 1;
+
+      &.is-danger {
+        color: orange;
+        border-color: orange;
+      }
+
+      &:focus,
+      &.focus {
+        + .form__label {
+          font-size: 12px;
+          transform: translateY(-100%);
+          top: 0;
+        }
+      }
+    }
+
+    &__label {
+      position: absolute;
+      transition: .3s;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
+      font-weight: 300;
+    }
+
+    &__error {
+      position: absolute;
+      font-size: 12px;
+      top: 100%;
+      left: 0;
+      color: orange;
+      margin-top: 5px;
     }
   }
   .v-select {

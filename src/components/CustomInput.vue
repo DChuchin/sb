@@ -34,7 +34,7 @@ export default {
       return !!this.code;
     },
     validate() {
-      const arr = [];
+      let arr = [];
       if (this.required) {
         arr.push('required');
       }
@@ -42,7 +42,7 @@ export default {
         arr.push('email');
       }
       if (this.type === 'phone') {
-        arr.push('numeric');
+        return arr;
       }
       return arr.join('|');
     },

@@ -18,7 +18,7 @@
               | First Name
               sup *
             span.form__error.help-message(v-show="errors.has('firstName')")
-              | errors.first('firstName')
+              | Field is required
           .form__item
             input.form__input(
                 :class="{ focus: !!user.lastName, 'is-danger focus': errors.has('lastName') }"
@@ -31,8 +31,7 @@
               | Last Name
               sup *
             span.form__error.help-message(v-show="errors.has('lastName')")
-          //custom-input(type="text" name="lastName" required="true" v-model="user.lastName")
-          //  | Last Name
+              | Field is required
           .form__item
             input.form__input(
                 :class="{ focus: !!user.title }"
@@ -54,10 +53,10 @@
               | Email
               sup *
             span.form__error.help-message(v-show="errors.has('email')")
-              | {{ errors.first('email') }}
+              | Field must be a valid email
           .form__item
             masked-input.form__input(
-                :class="{ focus: !!user.phone }"
+                :class="{ focus: !!user.phone, 'is-danger focue': !isValidPhone }"
                 type="tel"
                 name="phone"
                 v-model="user.phone"
@@ -66,9 +65,9 @@
               )
             label.form__label
               | Phone
-          //custom-input(type="phone" name="phone" v-model="user.phone")
-          //  | Phone
-          div.form__item.form__item--select
+            span.form__error.help-message(v-show="!isValidPhone")
+              | Fill the gaps
+          .form__item.form__item--select
             v-select.custom-select(
               :class="{ focus: user.industry, 'is-danger': !validSelect }"
               v-model = "user.industry"
@@ -78,8 +77,21 @@
             label(for="industry")
               | Select Industry
               sup *
-          custom-input(type="text" name="company" required="true" v-model="user.company")
-            | Company
+            span.form__error.help-message(v-show="errors.has('industry')")
+              | Field is required
+          .form__item
+            input.form__input(
+                :class="{ focus: !!user.company, 'is-danger focus': errors.has('company') }"
+                v-validate="'required'"
+                type="text"
+                name="company"
+                v-model="user.company"
+              )
+            label.form__label
+              | Company
+              sup *
+            span.form__error.help-message(v-show="errors.has('company')")
+              | Field is required
           custom-button(type="button" :disabled="!isValid" @click="submit")
               | Submit
 </template>
@@ -101,6 +113,7 @@
       return {
         options: ['Agriculture', 'Foodservice', 'Food Manufacturing', 'Health and Media'],
         validSelect: true,
+        isValidPhone: true,
       };
     },
     components: {
@@ -119,7 +132,7 @@
         return this.$store.state.user;
       },
       isValid() {
-        return this.user.firstName && this.user.lastName && this.user.email && this.user.industry && this.user.company;
+        return this.errors.errors.length === 0 && this.isValidPhone && this.user.firstName && this.user.lastName && this.user.email && this.user.industry && this.user.company;
       },
     },
     methods: {
@@ -129,7 +142,12 @@
         this.$router.push('/how-to-play');
       },
       checkPhone() {
-        this.user.phone = arguments[1];
+        const val = arguments[0];
+        if (val.match('_')) {
+          this.isValidPhone = false;
+        } else {
+          this.isValidPhone = true;
+        }
       },
     },
   };

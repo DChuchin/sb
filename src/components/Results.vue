@@ -20,7 +20,7 @@
           .bottom-text(v-if = "serverResponse === 'success' ")
             | Look out for future emails with opportunities to play new soy trivia as well as the latest soybean oil labeling campaign results.
           .bottom-text(v-if = "serverResponse === 'error' ")
-            | Something wrong
+            | Invalid Choice
         transition(name = "fade")
           custom-button(@click = "finish" v-if="serverResponse !== 'success'")
             | Finish
@@ -135,4 +135,3 @@
     }
   }
 </style>
-

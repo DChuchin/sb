@@ -61,12 +61,12 @@
                 name="phone"
                 v-model="user.phone"
                 @input="checkPhone"
-                mask="\\+ 1 (111) 1111-11"
+                mask="(111) 111-1111"
               )
             label.form__label
               | Phone
             span.form__error.help-message(v-show="!isValidPhone")
-              | Fill the gaps
+              | Enter your phone number.
           .form__item.form__item--select
             v-select.custom-select(
               :class="{ focus: user.industry, 'is-danger': !validSelect }"

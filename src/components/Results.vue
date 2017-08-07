@@ -22,7 +22,7 @@
           .bottom-text(v-if = "serverResponse === 'error' ")
             | Invalid Choice
         transition(name = "fade")
-          custom-button(@click = "finish" v-if="serverResponse !== 'success'")
+          custom-button(@click = "finish" v-if="serverResponse !== 'success'" :disabled="sendingResults")
             | Finish
 </template>
 <script>
@@ -35,6 +35,9 @@
       MainTitle,
     },
     computed: {
+      sendingResults() {
+        return this.$store.state.sendingResults;
+      },
       bg() {
         const url = require('../assets/7_Image-for-Finsh-Screen.jpg');
         return `url(${url})`;
@@ -53,6 +56,7 @@
     },
     methods: {
       finish() {
+        this.$store.commit('changeSendingStatus', true);
         this.animate = true;
         this.$store.dispatch('finish');
       },

@@ -15,6 +15,7 @@ const getUser = store => {
 export default new Vuex.Store({
   plugins: [getUser],
   state: {
+    sendingResults: false,
     step: 0,
     user: {
       firstName: '',
@@ -52,6 +53,9 @@ export default new Vuex.Store({
     pushAnswer(state, answer) {
       state.answers.push(answer);
     },
+    changeSendingStatus(state, newStatus) {
+      state.sendingResults = newStatus;
+    },
   },
   actions: {
     finish(context) {
@@ -68,6 +72,7 @@ export default new Vuex.Store({
         .catch(error => {
           console.log(error);
           context.state.finishGame = 'error';
+          context.state.sendingResults = false;
         });
     },
   },

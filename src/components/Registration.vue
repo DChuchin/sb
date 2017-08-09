@@ -132,7 +132,7 @@
         return this.$store.state.user;
       },
       isValid() {
-        return this.errors.errors.length === 0 && this.isValidPhone && this.user.firstName && this.user.lastName && this.user.email && this.user.industry && this.user.company;
+        return this.errors.items.length === 0 && this.isValidPhone && this.user.firstName && this.user.lastName && this.user.email && this.user.industry && this.user.company;
       },
     },
     methods: {
